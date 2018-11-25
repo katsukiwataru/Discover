@@ -1,0 +1,57 @@
+@import "sanitize";
+@import "variable";
+@import "mixin";
+
+html {
+  font-size: 62.5%;
+}
+.wrapper{
+  width: 100vw;
+  height: 100vh;
+}
+.box {
+  width: $boxSize;
+  height: $boxSize;
+  border-radius: 50%;
+  background-color: #9c9c9c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 0.8rem gray;
+  transform: translate(-50%,-50%);
+  cursor: pointer;
+}
+// .htmlArea {
+//   position: relative;
+//   display: flex;
+// }
+// .cssArea {
+//   position: relative;
+//   display: flex;
+// }
+// .jsArea {
+//   position: relative;
+//   display: flex;
+// }
+.htmlBox {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+}
+.cssBox {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+}
+.jsBox {
+  position: absolute;
+  top: 60%;
+  right: 20%;
+}
+.boxText {
+  color: #FFFFFF;
+  font-size: 1.6rem;
+  font-weight: bold;
+  max-width: 4.8rem;
+  text-align: center;
+}
