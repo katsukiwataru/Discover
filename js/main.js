@@ -21,8 +21,7 @@
 
 
   class elementControler {
-    constructor(languageItems, createdItems, languageTypeItem,
-    ) {
+    constructor(languageItems, createdItems, languageTypeItem, ) {
       this.languageItems = languageItems
       this.createdItems = createdItems
       this.languageTypeItem = languageTypeItem
@@ -49,8 +48,7 @@
 
   const cssControler = new elementControler(languagesItems.cssItems, createdcssItem, "cssItem", )
 
-  const jsControler = new elementControler(languagesItems.jsItems, createdjsItem, "javascriptItem")
-
+  const jsControler = new elementControler(languagesItems.jsItems, createdjsItem, "jsItem")
 
 
   const techSearch = (createdItems, languagesList) => {
@@ -62,46 +60,59 @@
     }
   }
 
-  window.onload = function () {
-    const htmlLocation = mainElements.htmlBox.getBoundingClientRect();
-    console.log(htmlLocation.left);   // x座標(絶対座標)
-    console.log(htmlLocation.right);   // x座標(絶対座標)
-    console.log(htmlLocation.top);    // y座標(絶対座標)
-    console.log(htmlLocation.width);  // 幅
-    console.log(htmlLocation.height); // 高さ
-  }
-
-
-  // createdhtmlItem[0].style.position = 'absolute';
-  // createdhtmlItem[0].style.top = '24%';
-  // createdhtmlItem[0].style.left = '50%';
-
-  mainElements.htmlBox.addEventListener('click', () => {
+  mainElements.htmlBox.addEventListener('click', (element) => {
     if (htmlItemCreate) {
       htmlControler.createElements()
       htmlControler.appendElements()
       techSearch(createdhtmlItem, languagesItems.htmlItems)
-      htmlItemCreate = false
+
+      for (let itemIndex = 0; itemIndex < languagesItems.htmlItems.length; itemIndex++) {
+        // const randomNumberX = (Math.floor(Math.random() * 11) - 5)
+        // const randomNumberY = (Math.floor(Math.random() * 11) - 5)
+        // const style = window.getComputedStyle(mainElements.htmlBox);
+        // console.log(createdhtmlItem[itemIndex]);
+
+        createdhtmlItem[itemIndex].classList.add('active');
+        createdhtmlItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
+        createdhtmlItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
+
+
+
+        htmlItemCreate = false
+      }
+    } else {
+      console.log(htmlItemCreate)
     }
   })
 
+  // createdhtmlItem[0].style.top = (element.pageY / 10) - 2 + 'rem';
+  // createdhtmlItem[0].style.left = (element.pageX / 10) - 2 + 'rem';
 
-  mainElements.cssBox.addEventListener('click', () => {
-    if (cssItemCreate) {
-      cssControler.createElements()
-      cssControler.appendElements()
-      techSearch(createdcssItem, languagesItems.cssItems)
-      cssItemCreate = false
-    }
-  })
+  // mainElements.cssBox.addEventListener('click', (element) => {
+  //   if (cssItemCreate) {
+  //     cssControler.createElements()
+  //     cssControler.appendElements()
+  //     techSearch(createdcssItem, languagesItems.cssItems)
 
-  mainElements.jsBox.addEventListener('click', () => {
-    if (jsImteCreate) {
-      jsControler.createElements()
-      jsControler.appendElements()
-      techSearch(createdjsItem, languagesItems.jsItems)
-      jsImteCreate = false
-    }
-  })
+  //     for (let itemIndex = 0; itemIndex < languagesItems.cssItems.length; itemIndex++) {
+
+  //       createdcssItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
+  //       createdcssItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
+
+
+  //       cssItemCreate = false
+  //     }
+
+  //   }
+  // })
+
+  // mainElements.jsBox.addEventListener('click', () => {
+  //   if (jsImteCreate) {
+  //     jsControler.createElements()
+  //     jsControler.appendElements()
+  //     techSearch(createdjsItem, languagesItems.jsItems)
+  //     jsImteCreate = false
+  //   }
+  // })
 
 })()
