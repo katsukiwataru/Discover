@@ -553,13 +553,30 @@ html {
   align-items: center;
   box-shadow: 0 0 0.8rem gray;
   transform: translate(-50%, -50%);
-  cursor: pointer;
+}
+
+.box:hover {
+  width: 7.2rem;
+  height: 7.2rem;
+  z-index: 1;
 }
 
 .htmlBox {
   position: absolute;
   top: 30%;
   left: 50%;
+}
+
+.cssBox {
+  position: absolute;
+  top: 60%;
+  left: 20%;
+}
+
+.jsBox {
+  position: absolute;
+  top: 60%;
+  right: 20%;
 }
 
 .htmlItem {
@@ -572,18 +589,6 @@ html {
 
 .jsItem {
   position: absolute;
-}
-
-.cssBox {
-  position: absolute;
-  top: 50%;
-  left: 20%;
-}
-
-.jsBox {
-  position: absolute;
-  top: 60%;
-  right: 20%;
 }
 
 .boxText {

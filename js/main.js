@@ -9,7 +9,7 @@
   const languagesItems = {
     htmlItems: ["Pug", "2", "3", "4", "5", "6"],
     cssItems: ["Sass", "20", "30", "40"],
-    jsItems: ["100", "200", "300", "400", "500"]
+    jsItems: ["Vue", "React", "Angular", "400", "500"]
   }
 
   let htmlItemCreate = true
@@ -19,6 +19,10 @@
   let createdcssItem = []
   let createdjsItem = []
 
+
+  window.requestAnimationFrame =
+    window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+    window.webkitRequestAnimationFrame || window.oRequestAnimationFrame;
 
   class elementControler {
     constructor(languageItems, createdItems, languageTypeItem, ) {
@@ -60,6 +64,32 @@
     }
   }
 
+  const animationTranslate = (target, time, endX, endY) => {
+    const startX = -50
+    const startY = -50
+    const diffX = endX - startX
+    const diffY = endY - startY
+    const today = new Date()
+    const clickMillisecond = today.getTime()
+
+    const update = () => {
+      const updateMillisecond = Date.now()
+      const diff = ((updateMillisecond - clickMillisecond))
+      progress = diff / time
+      console.log(diff)
+      progress = Math.min(progress, 1)
+      if (progress >= 0) {
+        const resultX = startX + diffX * progress
+        const resultY = startY + diffY * progress
+        target.style.transform = `translate( ${resultX}%, ${resultY}% )`
+      }
+      if (progress < 1) {
+        requestAnimationFrame(update)
+      }
+    }
+    requestAnimationFrame(update)
+  }
+
   mainElements.htmlBox.addEventListener('click', (element) => {
     if (htmlItemCreate) {
       htmlControler.createElements()
@@ -67,52 +97,49 @@
       techSearch(createdhtmlItem, languagesItems.htmlItems)
 
       for (let itemIndex = 0; itemIndex < languagesItems.htmlItems.length; itemIndex++) {
-        // const randomNumberX = (Math.floor(Math.random() * 11) - 5)
-        // const randomNumberY = (Math.floor(Math.random() * 11) - 5)
-        // const style = window.getComputedStyle(mainElements.htmlBox);
-        // console.log(createdhtmlItem[itemIndex]);
-
-        createdhtmlItem[itemIndex].classList.add('active');
+        const randomNumberX = (Math.floor(Math.random() * 941) - 520)
+        const randomNumberY = (Math.floor(Math.random() * 561) - 330)
         createdhtmlItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
         createdhtmlItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
-
-
-
-        htmlItemCreate = false
+        animationTranslate(createdhtmlItem[itemIndex], 2000, randomNumberX, randomNumberY)
       }
+      htmlItemCreate = false
     } else {
       console.log(htmlItemCreate)
     }
   })
 
-  // createdhtmlItem[0].style.top = (element.pageY / 10) - 2 + 'rem';
-  // createdhtmlItem[0].style.left = (element.pageX / 10) - 2 + 'rem';
+  mainElements.cssBox.addEventListener('click', (element) => {
+    if (cssItemCreate) {
+      cssControler.createElements()
+      cssControler.appendElements()
+      techSearch(createdcssItem, languagesItems.cssItems)
 
-  // mainElements.cssBox.addEventListener('click', (element) => {
-  //   if (cssItemCreate) {
-  //     cssControler.createElements()
-  //     cssControler.appendElements()
-  //     techSearch(createdcssItem, languagesItems.cssItems)
+      for (let itemIndex = 0; itemIndex < languagesItems.cssItems.length; itemIndex++) {
+        const randomNumberX = (Math.floor(Math.random() * 401) - 200)
+        const randomNumberY = (Math.floor(Math.random() * 651) - 275)
+        createdcssItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
+        createdcssItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
+        animationTranslate(createdcssItem[itemIndex], 2000, randomNumberX, randomNumberY)
+      }
+      cssItemCreate = false
+    }
+  })
 
-  //     for (let itemIndex = 0; itemIndex < languagesItems.cssItems.length; itemIndex++) {
-
-  //       createdcssItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
-  //       createdcssItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
-
-
-  //       cssItemCreate = false
-  //     }
-
-  //   }
-  // })
-
-  // mainElements.jsBox.addEventListener('click', () => {
-  //   if (jsImteCreate) {
-  //     jsControler.createElements()
-  //     jsControler.appendElements()
-  //     techSearch(createdjsItem, languagesItems.jsItems)
-  //     jsImteCreate = false
-  //   }
-  // })
+  mainElements.jsBox.addEventListener('click', (element) => {
+    if (jsImteCreate) {
+      jsControler.createElements()
+      jsControler.appendElements()
+      techSearch(createdjsItem, languagesItems.jsItems)
+      for (let itemIndex = 0; itemIndex < languagesItems.jsItems.length; itemIndex++) {
+        const randomNumberX = (Math.floor(Math.random() * 401) - 200)
+        const randomNumberY = (Math.floor(Math.random() * 651) - 275)
+        createdjsItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
+        createdjsItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
+        animationTranslate(createdjsItem[itemIndex], 2000, randomNumberX, randomNumberY)
+      }
+      jsImteCreate = false
+    }
+  })
 
 })()
