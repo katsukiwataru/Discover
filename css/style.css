@@ -556,8 +556,6 @@ html {
 }
 
 .box:hover {
-  width: 7.2rem;
-  height: 7.2rem;
   z-index: 1;
 }
 
