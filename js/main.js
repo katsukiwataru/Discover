@@ -66,18 +66,18 @@
   const animateTranslate = (target, time, ) => {
     // const diffX = endvalue.X - startvalue.X
     // const diffY = endvalue.Y - startvalue.Y
-    // const reg = 360 / languagesItems.htmlItems.length
+    // const angle = 360 / languagesItems.htmlItems.length
     // const r = 50
     // const l = 50
     // const h = 50
-    // var deg = reg * languagesItems.htmlItems.length
-    // const resultX = Math.cos(deg * Math.PI / 180) * r + r;
-    // const resultY = Math.sin(deg * Math.PI / 180) * r + r;
+    // var degree = angle * languagesItems.htmlItems.length
+    // const resultX = Math.cos(degree * Math.PI / 180) * r + r;
+    // const resultY = Math.sin(degree * Math.PI / 180) * r + r;
 
     // target.style.transform = `translate( ${resultX - l}%, ${resultY - h}% )`
-    // console.log(Math.cos(reg * (Math.PI / 180)))
-    // console.log(Math.cos(reg * (Math.PI / 180)) / Math.random())
-    // const resultX = Math.cos(reg * (Math.PI / 180)) / Math.random()
+    // console.log(Math.cos(angle * (Math.PI / 180)))
+    // console.log(Math.cos(angle * (Math.PI / 180)) / Math.random())
+    // const resultX = Math.cos(angle * (Math.PI / 180)) / Math.random()
 
     // const startTime = Date.now()
     // const update = () => {
@@ -103,13 +103,13 @@
         createdhtmlItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
         // animateTranslate(createdhtmlItem[itemIndex], )
         const target = createdhtmlItem[itemIndex]
-        const reg = 360 / languagesItems.htmlItems.length
-        // const reg = 360 / itemIndex
-        const deg = reg * itemIndex
-        console.log(deg)
-        const syahen = 300 + ((200 - 300) * 1)
-        const resultX = Math.cos(deg * (Math.PI / 180)) * syahen
-        const resultY = Math.sin(deg * (Math.PI / 180)) * syahen
+        const angle = 360 / languagesItems.htmlItems.length
+        const degree = angle * itemIndex + Math.floor(Math.random() * 20)
+        const syahen = 100 + ((200 - 100))
+        const resultX = Math.floor(Math.cos(degree * (Math.PI / 180)) * syahen)
+        const resultY = Math.floor(Math.sin(degree * (Math.PI / 180)) * syahen)
+        console.log(resultX, resultY)
+
         target.style.transform = `translate( ${resultX - 50}%, ${resultY - 50}% )`
       }
       existsHtmlItem = false
@@ -127,15 +127,15 @@
       for (let itemIndex = 0; itemIndex < languagesItems.cssItems.length; itemIndex++) {
         createdcssItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
         createdcssItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
-        const start = {
-          X: -50,
-          Y: -50,
-        }
-        const end = {
-          X: Math.floor(Math.random() * 401) - 200,
-          Y: Math.floor(Math.random() * 651) - 275,
-        }
-        // animateTranslate(createdcssItem[itemIndex], 2000, start, end)
+        // animateTranslate(createdcssItem[itemIndex], )
+        const target = createdcssItem[itemIndex]
+        const angle = 360 / languagesItems.cssItems.length
+        const degree = angle * itemIndex + Math.floor(Math.random() * 20)
+        console.log(degree)
+        const syahen = 100 + ((200 - 100))
+        const resultX = Math.cos(degree * (Math.PI / 180)) * syahen
+        const resultY = Math.sin(degree * (Math.PI / 180)) * syahen
+        target.style.transform = `translate( ${resultX - 50}%, ${resultY - 50}% )`
       }
       existsCssItem = false
     }
@@ -149,15 +149,23 @@
       for (let itemIndex = 0; itemIndex < languagesItems.jsItems.length; itemIndex++) {
         createdjsItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
         createdjsItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
-        const start = {
-          X: -50,
-          Y: -50,
-        }
-        const end = {
-          X: Math.floor(Math.random() * 401) - 200,
-          Y: Math.floor(Math.random() * 651) - 275,
-        }
+        // const start = {
+        //   X: -50,
+        //   Y: -50,
+        // }
+        // const end = {
+        //   X: Math.floor(Math.random() * 401) - 200,
+        //   Y: Math.floor(Math.random() * 651) - 275,
+        // }
         // animateTranslate(createdjsItem[itemIndex], 2000, start, end)
+        const target = createdjsItem[itemIndex]
+        const angle = 360 / languagesItems.jsItems.length
+        const degree = angle * itemIndex + Math.floor(Math.random() * 20)
+        console.log(degree)
+        const syahen = 100 + ((200 - 100))
+        const resultX = Math.cos(degree * (Math.PI / 180)) * syahen
+        const resultY = Math.sin(degree * (Math.PI / 180)) * syahen
+        target.style.transform = `translate( ${resultX - 50}%, ${resultY - 50}% )`
       }
       existsJsItem = false
     }
