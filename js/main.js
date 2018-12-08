@@ -63,28 +63,33 @@
 
 
 
-  const animateTranslate = (target, time, startvalue, endvalue) => {
-    // const startX = -50
-    // const startY = -50
-    const diffX = endvalue.X - startvalue.X
-    const diffY = endvalue.Y - startvalue.Y
-    const startTime = Date.now()
+  const animateTranslate = (target, time, ) => {
+    // const diffX = endvalue.X - startvalue.X
+    // const diffY = endvalue.Y - startvalue.Y
+    // const reg = 360 / languagesItems.htmlItems.length
+    // const r = 50
+    // const l = 50
+    // const h = 50
+    // var deg = reg * languagesItems.htmlItems.length
+    // const resultX = Math.cos(deg * Math.PI / 180) * r + r;
+    // const resultY = Math.sin(deg * Math.PI / 180) * r + r;
 
-    const update = () => {
-      const now = Date.now()
-      const timeDiff = (now - startTime)
-      const progress = timeDiff / time
-      if (progress < 0 || progress > 1) {
-        return
-      }
-      const resultX = startvalue.X + diffX * progress
-      const resultY = startvalue.Y + diffY * progress
-      // const resultX = startX + diffX * progress
-      // const resultY = startY + diffY * progress
-      target.style.transform = `translate( ${resultX}%, ${resultY}% )`
-      requestAnimationFrame(update)
-    }
-    requestAnimationFrame(update)
+    // target.style.transform = `translate( ${resultX - l}%, ${resultY - h}% )`
+    // console.log(Math.cos(reg * (Math.PI / 180)))
+    // console.log(Math.cos(reg * (Math.PI / 180)) / Math.random())
+    // const resultX = Math.cos(reg * (Math.PI / 180)) / Math.random()
+
+    // const startTime = Date.now()
+    // const update = () => {
+    //   const now = Date.now()
+    //   const timeDiff = (now - startTime)
+    //   const progress = timeDiff / time
+    //   if (progress < 0 || progress > 1) {
+    //     return
+    //   }
+    //   requestAnimationFrame(update)
+    // }
+    // requestAnimationFrame(update)
   }
 
   mainElements.htmlBox.addEventListener('click', (element) => {
@@ -94,20 +99,18 @@
       techSearch(createdhtmlItem, languagesItems.htmlItems)
 
       for (let itemIndex = 0; itemIndex < languagesItems.htmlItems.length; itemIndex++) {
-        // const randomNumberX = (Math.floor(Math.random() * 941) - 520)
-        // const randomNumberY = (Math.floor(Math.random() * 561) - 330)
         createdhtmlItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
         createdhtmlItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
-        // animateTranslate(createdhtmlItem[itemIndex], 2000, randomNumberX, randomNumberY)
-        const start = {
-          X: -50,
-          Y: -50,
-        }
-        const end = {
-          X: Math.floor(Math.random() * 941) - 520,
-          Y: Math.floor(Math.random() * 561) - 330,
-        }
-        animateTranslate(createdhtmlItem[itemIndex], 2000, start, end)
+        // animateTranslate(createdhtmlItem[itemIndex], )
+        const target = createdhtmlItem[itemIndex]
+        const reg = 360 / languagesItems.htmlItems.length
+        // const reg = 360 / itemIndex
+        const deg = reg * itemIndex
+        console.log(deg)
+        const syahen = 300 + ((200 - 300) * 1)
+        const resultX = Math.cos(deg * (Math.PI / 180)) * syahen
+        const resultY = Math.sin(deg * (Math.PI / 180)) * syahen
+        target.style.transform = `translate( ${resultX - 50}%, ${resultY - 50}% )`
       }
       existsHtmlItem = false
     } else {
@@ -122,8 +125,6 @@
       techSearch(createdcssItem, languagesItems.cssItems)
 
       for (let itemIndex = 0; itemIndex < languagesItems.cssItems.length; itemIndex++) {
-        // const randomNumberX = (Math.floor(Math.random() * 401) - 200)
-        // const randomNumberY = (Math.floor(Math.random() * 651) - 275)
         createdcssItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
         createdcssItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
         const start = {
@@ -134,8 +135,7 @@
           X: Math.floor(Math.random() * 401) - 200,
           Y: Math.floor(Math.random() * 651) - 275,
         }
-        // animateTranslate(createdcssItem[itemIndex], 2000, randomNumberX, randomNumberY)
-        animateTranslate(createdcssItem[itemIndex], 2000, start, end)
+        // animateTranslate(createdcssItem[itemIndex], 2000, start, end)
       }
       existsCssItem = false
     }
@@ -147,8 +147,6 @@
       jsControler.appendElements()
       techSearch(createdjsItem, languagesItems.jsItems)
       for (let itemIndex = 0; itemIndex < languagesItems.jsItems.length; itemIndex++) {
-        // const randomNumberX = (Math.floor(Math.random() * 401) - 200)
-        // const randomNumberY = (Math.floor(Math.random() * 651) - 275)
         createdjsItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
         createdjsItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
         const start = {
@@ -159,8 +157,7 @@
           X: Math.floor(Math.random() * 401) - 200,
           Y: Math.floor(Math.random() * 651) - 275,
         }
-        // animateTranslate(createdjsItem[itemIndex], 2000, randomNumberX, randomNumberY)
-        animateTranslate(createdjsItem[itemIndex], 2000, start, end)
+        // animateTranslate(createdjsItem[itemIndex], 2000, start, end)
       }
       existsJsItem = false
     }
