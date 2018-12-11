@@ -63,32 +63,18 @@
 
 
 
-  // const animateTranslate = (target, time, length, index) => {
-  //   const angle = 360 / length
-  //   const degree = angle * index + Math.floor(Math.random() * 20)
-  //   const hypotenuse = 100 + ((200 - 100))
-  //   const resultX = Math.floor(Math.cos(degree * (Math.PI / 180)) * hypotenuse)
-  //   const resultY = Math.floor(Math.sin(degree * (Math.PI / 180)) * hypotenuse)
-  //   console.log(resultX, resultY)
-  //   const startTime = Date.now()
-  //   const update = () => {
-  //     const now = Date.now()
-  //     const timeDiff = (now - startTime)
-  //     const progress = timeDiff / time
-  //     if (progress < 0 || progress > 1) {
-  //       return
-  //     }
-  //     target.style.transform = `translate( ${resultX - 50}%, ${resultY - 50}% )`
-  //     requestAnimationFrame(update)
-
-  //   }
-  //   requestAnimationFrame(update)
-  // }
-
-
-  const animateTranslate = (target, time, startvalue, endvalue) => {
-    const diffX = endvalue.X - startvalue.X
-    const diffY = endvalue.Y - startvalue.Y
+  const animateTranslate = (target, time, length, index) => {
+    const angle = 360 / length
+    const degree = angle * index + Math.floor(Math.random() * 20)
+    const hypotenuse = 100 + ((200 - 100))
+    const start = {
+      X: -50,
+      Y: -50,
+    }
+    const end = {
+      X: Math.floor(Math.cos(degree * (Math.PI / 180)) * hypotenuse),
+      Y: Math.floor(Math.sin(degree * (Math.PI / 180)) * hypotenuse),
+    }
     const startTime = Date.now()
     const update = () => {
       const now = Date.now()
@@ -97,14 +83,34 @@
       if (progress < 0 || progress > 1) {
         return
       }
-      const resultX = startvalue.X + diffX * progress
-      const resultY = startvalue.Y + diffY * progress
-      target.style.transform = `translate( ${resultX}%, ${resultY}% )`
+      const resultX = (start.X + end.X - start.X) * progress
+      const resultY = (start.Y + end.Y - start.Y) * progress
+      target.style.transform = `translate( ${resultX - 50}%, ${resultY - 50}% )`
       requestAnimationFrame(update)
     }
-    // requestAnimationFrame(update)
     update()
   }
+
+
+  // const animateTranslate = (target, time, startvalue, endvalue) => {
+  //   const diffX = endvalue.X - startvalue.X
+  //   const diffY = endvalue.Y - startvalue.Y
+  //   const startTime = Date.now()
+  //   const update = () => {
+  //     const now = Date.now()
+  //     const timeDiff = (now - startTime)
+  //     const progress = timeDiff / time
+  //     if (progress < 0 || progress > 1) {
+  //       return
+  //     }
+  //     const resultX = startvalue.X + diffX * progress
+  //     const resultY = startvalue.Y + diffY * progress
+  //     target.style.transform = `translate( ${resultX}%, ${resultY}% )`
+  //     requestAnimationFrame(update)
+  //   }
+  //   // requestAnimationFrame(update)
+  //   update()
+  // }
 
 
   mainElements.htmlBox.addEventListener('click', (element) => {
@@ -115,19 +121,24 @@
       for (let itemIndex = 0; itemIndex < languagesItems.htmlItems.length; itemIndex++) {
         createdhtmlItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
         createdhtmlItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
-        // animateTranslate(createdhtmlItem[itemIndex], 2000, languagesItems.htmlItems.length, itemIndex)
-        const angle = 360 / languagesItems.htmlItems.length
-        const degree = angle * itemIndex + Math.floor(Math.random() * 1)
-        const hypotenuse = 100 + ((200 - 100)) + Math.random() * 1
-        const start = {
-          X: -50,
-          Y: -50,
-        }
-        const end = {
-          X: Math.floor(Math.cos(degree * (Math.PI / 180)) * hypotenuse),
-          Y: Math.floor(Math.sin(degree * (Math.PI / 180)) * hypotenuse)
-        }
-        animateTranslate(createdhtmlItem[itemIndex], 1000, start, end)
+        animateTranslate(createdhtmlItem[itemIndex], 2000, languagesItems.htmlItems.length, itemIndex)
+        // const angle = 360 / languagesItems.htmlItems.length
+        // const degree = angle * itemIndex + (Math.random() * 1)
+        // const hypotenuse = 100 + ((200 - 100)) + Math.random() * 1
+
+        // const start = {
+        //   X: -50,
+        //   Y: -50,
+        // }
+        // const end = {
+        //   X: Math.floor(Math.sin(degree * (Math.PI / 180)) * hypotenuse),
+        //   Y: Math.floor(Math.cos(degree * (Math.PI / 180)) * hypotenuse),
+        // }
+        // console.log(end.X, end.Y)
+        // const resultX = Math.floor(Math.cos(degree * (Math.PI / 180)) * hypotenuse)
+        // const resultY = Math.floor(Math.sin(degree * (Math.PI / 180)) * hypotenuse)
+        // console.log(resultX, resultY)
+        // animateTranslate(createdhtmlItem[itemIndex], 1000, start, end)
       }
       existsHtmlItem = false
     } else {
@@ -144,19 +155,19 @@
       for (let itemIndex = 0; itemIndex < languagesItems.cssItems.length; itemIndex++) {
         createdcssItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
         createdcssItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
-        // animateTranslate(createdcssItem[itemIndex], 2000, languagesItems.cssItems.length, itemIndex)
-        const angle = 360 / languagesItems.cssItems.length
-        const degree = angle * itemIndex + Math.floor(Math.random() * 1)
-        const hypotenuse = 100 + ((200 - 100)) + Math.random() * 1
-        const start = {
-          X: -50,
-          Y: -50,
-        }
-        const end = {
-          X: Math.floor(Math.cos(degree * (Math.PI / 180)) * hypotenuse),
-          Y: Math.floor(Math.sin(degree * (Math.PI / 180)) * hypotenuse)
-        }
-        animateTranslate(createdcssItem[itemIndex], 1000, start, end)
+        animateTranslate(createdcssItem[itemIndex], 2000, languagesItems.cssItems.length, itemIndex)
+        // const angle = 360 / languagesItems.cssItems.length
+        // const degree = angle * itemIndex + Math.floor(Math.random() * 1)
+        // const hypotenuse = 100 + ((200 - 100)) + Math.random() * 1
+        // const start = {
+        //   X: -50,
+        //   Y: -50,
+        // }
+        // const end = {
+        //   X: Math.floor(Math.cos(degree * (Math.PI / 180)) * hypotenuse),
+        //   Y: Math.floor(Math.sin(degree * (Math.PI / 180)) * hypotenuse)
+        // }
+        // animateTranslate(createdcssItem[itemIndex], 1000, start, end)
       }
       existsCssItem = false
     }
@@ -170,19 +181,19 @@
       for (let itemIndex = 0; itemIndex < languagesItems.jsItems.length; itemIndex++) {
         createdjsItem[itemIndex].style.left = (element.pageX / window.innerWidth) * 100 + "%"
         createdjsItem[itemIndex].style.top = (element.pageY / window.innerHeight) * 100 + "%"
-        // animateTranslate(createdjsItem[itemIndex], 2000, languagesItems.jsItems.length, itemIndex)
-        const angle = 360 / languagesItems.jsItems.length
-        const degree = angle * itemIndex + Math.floor(Math.random() * 1)
-        const hypotenuse = 100 + ((200 - 100)) + Math.random() * 1
-        const start = {
-          X: -50,
-          Y: -50,
-        }
-        const end = {
-          X: Math.floor(Math.cos(degree * (Math.PI / 180)) * hypotenuse),
-          Y: Math.floor(Math.sin(degree * (Math.PI / 180)) * hypotenuse)
-        }
-        animateTranslate(createdjsItem[itemIndex], 1000, start, end)
+        animateTranslate(createdjsItem[itemIndex], 2000, languagesItems.jsItems.length, itemIndex)
+        // const angle = 360 / languagesItems.jsItems.length
+        // const degree = angle * itemIndex + Math.floor(Math.random() * 1)
+        // const hypotenuse = 100 + ((200 - 100)) + Math.random() * 1
+        // const start = {
+        //   X: -50,
+        //   Y: -50,
+        // }
+        // const end = {
+        //   X: Math.floor(Math.cos(degree * (Math.PI / 180)) * hypotenuse),
+        //   Y: Math.floor(Math.sin(degree * (Math.PI / 180)) * hypotenuse)
+        // }
+        // animateTranslate(createdjsItem[itemIndex], 1000, start, end)
       }
       existsJsItem = false
     }
