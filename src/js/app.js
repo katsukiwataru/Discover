@@ -1,3 +1,4 @@
+import elementControler from './modules/elementControler';
 ; (() => {
   const wrapper = document.getElementById('wrapper')
   const mainElements = {
@@ -18,31 +19,6 @@
   let createdhtmlItem = []
   let createdcssItem = []
   let createdjsItem = []
-
-
-  class elementControler {
-    constructor(languageItems, createdItems, languageTypeItem, ) {
-      this.languageItems = languageItems
-      this.createdItems = createdItems
-      this.languageTypeItem = languageTypeItem
-    }
-    createElements() {
-      for (let index = 0; index < this.languageItems.length; index++) {
-        const createdDiv = document.createElement('div')
-        const createdParagraph = document.createElement('p')
-        createdDiv.className = "box " + this.languageTypeItem
-        createdParagraph.className = "boxText"
-        createdParagraph.innerHTML = this.languageItems[index]
-        createdDiv.appendChild(createdParagraph)
-        this.createdItems.push(createdDiv)
-      }
-    }
-    appendElements() {
-      this.createdItems.slice().forEach(element => {
-        wrapper.appendChild(element)
-      })
-    }
-  }
 
   const htmlControler = new elementControler(languagesItems.htmlItems, createdhtmlItem, "htmlItem", )
 
@@ -102,6 +78,10 @@
         animateTranslate(createdhtmlItem[itemIndex], 1000, languagesItems.htmlItems.length, itemIndex, offset)
       }
       existsHtmlItem = false
+      // mainElements.htmlBox.style.display = 'none'
+      if (existsCssItem !== true) {
+        console.log(existsCssItem);
+      }
     } else {
       console.log(existsHtmlItem)
     }
