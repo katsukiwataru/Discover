@@ -8,9 +8,9 @@ import elementControler from './modules/elementControler';
   }
 
   const languagesItems = {
-    htmlItems: ["1", "2", "3", "4", "5", "6", "7"],
-    cssItems: ["10", "20", "30", "40", "50", "60"],
-    jsItems: ["100", "200", "300", "400", "500", "600", "700", "800",]
+    htmlItems: ["emmet", "pug", "BEM", "camelcase", "snakecase", "kebabcase"],
+    cssItems: ["mixin", "擬似クラス", "scss", "RWD", "grid", "import"],
+    jsItems: ["this", "コールバック関数", "class", "スコープ", "クロージャ", "Gulp", "Webpack", "npm",]
   }
 
   let existsHtmlItem = true
@@ -58,6 +58,13 @@ import elementControler from './modules/elementControler';
       if (progress < 0 || progress > 1) {
         return
       }
+
+      // def ease_out(t, b, c, d):
+      // t /= d
+      // t = t - 1
+      // return c * (t * t * t + 1) + b
+
+
       const resultX = Math.floor((start.X + end.X - start.X) * progress)
       const resultY = Math.floor((start.Y + end.Y - start.Y) * progress)
       target.style.transform = `translate( ${resultX - 50}%, ${resultY - 50}% )`
@@ -78,7 +85,6 @@ import elementControler from './modules/elementControler';
         animateTranslate(createdhtmlItem[itemIndex], 1000, languagesItems.htmlItems.length, itemIndex, offset)
       }
       existsHtmlItem = false
-      // mainElements.htmlBox.style.display = 'none'
       if (existsCssItem !== true) {
         console.log(existsCssItem);
       }
