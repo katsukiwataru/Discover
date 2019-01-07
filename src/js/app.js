@@ -160,7 +160,7 @@ import elementControler from './modules/elementControler';
       existsJsItem = true
       if (existsHtmlItem === true || existsCssItem === true) {
         // const offset = Math.random() + -80
-        const offset = Math.random() + -80
+        const offset = Math.random() - 80
         for (let itemIndex = 0; itemIndex < languagesItems.jsItems.length; itemIndex++) {
           // const offset = Math.random() + 330
           createdjsItem[itemIndex].style.left = Math.floor((element.pageX / window.innerWidth) * 100) + "%"
