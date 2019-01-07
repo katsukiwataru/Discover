@@ -9,16 +9,20 @@ import elementControler from './modules/elementControler';
 
   const languagesItems = {
     htmlItems: ["emmet", "pug", "BEM", "camelcase", "snakecase", "kebabcase"],
-    cssItems: ["mixin", "擬似クラス", "scss", "RWD", "grid", "import"],
+    cssItems: ["mixin", "CSS Modules", "scss", "RWD", "grid", "import"],
     jsItems: ["this", "コールバック関数", "class", "スコープ", "クロージャ", "Gulp", "Webpack", "npm",]
   }
 
-  let existsHtmlItem = true
-  let existsCssItem = true
-  let existsJsItem = true
+  let didCreateHtmlItem = true
+  let didCreateCssItem = true
+  let didCreateJsItem = true
+  let existsHtmlItem = false
+  let existsCssItem = false
+  let existsJsItem = false
   let createdhtmlItem = []
   let createdcssItem = []
   let createdjsItem = []
+
 
   const htmlControler = new elementControler(languagesItems.htmlItems, createdhtmlItem, "htmlItem", )
 
@@ -37,11 +41,10 @@ import elementControler from './modules/elementControler';
   }
 
 
-
   const animateTranslate = (target, time, length, index, offset) => {
     const angle = 360 / length
-    const degree = angle * index + Math.floor(Math.random() * 20) + offset
-    const hypotenuse = 100 + ((200 - 100))
+    const degree = angle * index + Math.floor(Math.random() * 10) + offset
+    const hypotenuse = 100 + (200 - 100)
     const start = {
       X: -50,
       Y: -50,
@@ -58,13 +61,34 @@ import elementControler from './modules/elementControler';
       if (progress < 0 || progress > 1) {
         return
       }
+      const resultX = Math.floor((start.X + end.X - start.X) * progress)
+      const resultY = Math.floor((start.Y + end.Y - start.Y) * progress)
+      target.style.transform = `translate( ${resultX - 50}%, ${resultY - 50}% )`
+      requestAnimationFrame(update)
+    }
+    update()
+  }
 
-      // def ease_out(t, b, c, d):
-      // t /= d
-      // t = t - 1
-      // return c * (t * t * t + 1) + b
-
-
+  const chnageTranslate = (target, time, length, index, offset) => {
+    const angle = 240 / length
+    const degree = angle * index + Math.floor(Math.random() * 4) + offset
+    const hypotenuse = 100 + (200 - 100)
+    const start = {
+      X: -50,
+      Y: -50,
+    }
+    const end = {
+      X: Math.floor(Math.cos(degree * (Math.PI / 180)) * hypotenuse),
+      Y: Math.floor(Math.sin(degree * (Math.PI / 180)) * hypotenuse),
+    }
+    const startTime = Date.now()
+    const update = () => {
+      const now = Date.now()
+      const timeDiff = (now - startTime)
+      const progress = timeDiff / time
+      if (progress < 0 || progress > 1) {
+        return
+      }
       const resultX = Math.floor((start.X + end.X - start.X) * progress)
       const resultY = Math.floor((start.Y + end.Y - start.Y) * progress)
       target.style.transform = `translate( ${resultX - 50}%, ${resultY - 50}% )`
@@ -74,7 +98,7 @@ import elementControler from './modules/elementControler';
   }
 
   mainElements.htmlBox.addEventListener('click', (element) => {
-    if (existsHtmlItem) {
+    if (didCreateHtmlItem) {
       htmlControler.createElements()
       htmlControler.appendElements()
       techSearch(createdhtmlItem, languagesItems.htmlItems)
@@ -84,17 +108,21 @@ import elementControler from './modules/elementControler';
         createdhtmlItem[itemIndex].style.top = Math.floor((element.pageY / window.innerHeight) * 100) + "%"
         animateTranslate(createdhtmlItem[itemIndex], 1000, languagesItems.htmlItems.length, itemIndex, offset)
       }
-      existsHtmlItem = false
-      if (existsCssItem !== true) {
-        console.log(existsCssItem);
+      existsHtmlItem = true
+      if (existsCssItem === true || existsJsItem === true) {
+        const offset = Math.random() + 160
+        for (let itemIndex = 0; itemIndex < languagesItems.htmlItems.length; itemIndex++) {
+          createdhtmlItem[itemIndex].style.left = Math.floor((element.pageX / window.innerWidth) * 100) + "%"
+          createdhtmlItem[itemIndex].style.top = Math.floor((element.pageY / window.innerHeight) * 100) + "%"
+          chnageTranslate(createdhtmlItem[itemIndex], 1000, languagesItems.htmlItems.length, itemIndex, offset)
+        }
       }
-    } else {
-      console.log(existsHtmlItem)
     }
+    didCreateHtmlItem = false
   })
 
   mainElements.cssBox.addEventListener('click', (element) => {
-    if (existsCssItem) {
+    if (didCreateCssItem) {
       cssControler.createElements()
       cssControler.appendElements()
       techSearch(createdcssItem, languagesItems.cssItems)
@@ -104,12 +132,22 @@ import elementControler from './modules/elementControler';
         createdcssItem[itemIndex].style.top = Math.floor((element.pageY / window.innerHeight) * 100) + "%"
         animateTranslate(createdcssItem[itemIndex], 1000, languagesItems.cssItems.length, itemIndex, offset)
       }
-      existsCssItem = false
+      existsCssItem = true
+      if (existsHtmlItem === true || existsJsItem === true) {
+        // const offset = Math.random() + 30
+        const offset = Math.random() + 50
+        for (let itemIndex = 0; itemIndex < languagesItems.cssItems.length; itemIndex++) {
+          createdcssItem[itemIndex].style.left = Math.floor((element.pageX / window.innerWidth) * 100) + "%"
+          createdcssItem[itemIndex].style.top = Math.floor((element.pageY / window.innerHeight) * 100) + "%"
+          chnageTranslate(createdcssItem[itemIndex], 1000, languagesItems.cssItems.length, itemIndex, offset)
+        }
+      }
     }
+    didCreateCssItem = false
   })
 
   mainElements.jsBox.addEventListener('click', (element) => {
-    if (existsJsItem) {
+    if (didCreateJsItem) {
       jsControler.createElements()
       jsControler.appendElements()
       techSearch(createdjsItem, languagesItems.jsItems)
@@ -119,8 +157,19 @@ import elementControler from './modules/elementControler';
         createdjsItem[itemIndex].style.top = Math.floor((element.pageY / window.innerHeight) * 100) + "%"
         animateTranslate(createdjsItem[itemIndex], 1000, languagesItems.jsItems.length, itemIndex, offset)
       }
-      existsJsItem = false
+      existsJsItem = true
+      if (existsHtmlItem === true || existsCssItem === true) {
+        // const offset = Math.random() + -80
+        const offset = Math.random() + -80
+        for (let itemIndex = 0; itemIndex < languagesItems.jsItems.length; itemIndex++) {
+          // const offset = Math.random() + 330
+          createdjsItem[itemIndex].style.left = Math.floor((element.pageX / window.innerWidth) * 100) + "%"
+          createdjsItem[itemIndex].style.top = Math.floor((element.pageY / window.innerHeight) * 100) + "%"
+          chnageTranslate(createdjsItem[itemIndex], 1000, languagesItems.jsItems.length, itemIndex, offset)
+        }
+      }
     }
+    didCreateJsItem = false
   })
 
 })()
