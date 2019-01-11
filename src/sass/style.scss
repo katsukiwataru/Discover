@@ -19,6 +19,7 @@ html {
   box-shadow: 0 0 0.8rem gray;
   transform: translate(-50%,-50%);
   user-select: none;
+  cursor: pointer;
 }
 // .box:hover {
 //   z-index: 1;
@@ -29,8 +30,9 @@ html {
   position: absolute;
   top: 26%;
   left: 50%;
-  background-color: $boxBackground;
-    // background-color: $htmlcolor;
+  // background-color: $boxBackground;
+  background-color: $htmlcolor;
+  // background: linear-gradient($htmlcolor, #f2672e);
  }
 .cssBox {
   width: $langBoxSize;
@@ -38,8 +40,9 @@ html {
   position: absolute;
   top: 60%;
   left: 30%;
-  background-color: $boxBackground;
-    // background-color: $csscolor;
+  // background-color: $boxBackground;
+  background-color: $csscolor;
+  // background: linear-gradient($csscolor, #30aadd);
 }
 
 .jsBox {
@@ -48,26 +51,28 @@ html {
   position: absolute;
   top: 60%;
   left: 70%;
-  background-color: $boxBackground;
-    // background-color: $jscolor;
+  // background-color: $boxBackground;
+  background-color: $jscolor;
+  // background: linear-gradient($jscolor, #f2bf26);
+
 }
 
 .htmlItem {
   position: absolute;
   // opacity: 0.9;
-  // background-color: $htmlcolor;
+  background-color: #f2672e;
 }
 
 .cssItem {
   position: absolute;
   // opacity: 0.9;
-  // background-color: $csscolor;
+  background-color: #30aadd;
 }
 
 .jsItem {
   position: absolute;
   // opacity: 0.9;
-  // background-color: $jscolor;
+  background-color: #f2bf26;
 }
 
 .boxText {

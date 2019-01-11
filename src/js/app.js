@@ -9,7 +9,7 @@ import elementControler from './modules/elementControler';
 
   const languagesItems = {
     htmlItems: ["emmet", "pug", "BEM", "camelcase", "snakecase", "kebabcase"],
-    cssItems: ["mixin", "CSS Modules", "scss", "RWD", "grid", "import"],
+    cssItems: ["mixin", "CSS Modules", "scss", "RWD", "grid layout", "import"],
     jsItems: ["this", "コールバック関数", "class", "スコープ", "クロージャ", "Gulp", "Webpack", "npm",]
   }
 
